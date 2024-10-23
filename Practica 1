@@ -1,0 +1,67 @@
+int EstadoA = 0;
+int EstadoB = 0;
+
+void setup() {
+  pinMode(2, INPUT);  // suma
+  pinMode(3, INPUT);  // suma
+
+
+  pinMode(12, OUTPUT);  // suma 
+  pinMode(13, OUTPUT);  // suma 
+  pinMode(10, OUTPUT);  // resta
+  pinMode(11, OUTPUT);  // resta
+  pinMode(9, OUTPUT);  // multiplicación
+  pinMode(8, OUTPUT);  // división
+  pinMode(7, OUTPUT);
+}
+
+void loop() {
+  EstadoA = digitalRead(2);
+  EstadoB = digitalRead(3);
+
+
+  // SUMA 
+  if (EstadoA ^ EstadoB) {
+    digitalWrite(12, HIGH);  
+  } else {
+    digitalWrite(12, LOW);   
+  }
+
+  if (EstadoA && EstadoB) {
+    digitalWrite(13, HIGH); 
+  } else {
+    digitalWrite(13, LOW); 
+  }
+
+  // RESTA (XOR)
+  if (EstadoA && !EstadoB) {
+    digitalWrite(10, HIGH);  
+  } else 
+    digitalWrite(10, LOW);  
+  }
+
+  if (!EstadoA && EstadoB) {
+    digitalWrite(11, HIGH);  
+  } else {
+    digitalWrite(11, LOW);   
+  }
+
+  // MULTIPLICACIÓN (AND)
+  if (EstadoA && EstadoB) {
+    digitalWrite(9, HIGH); 
+  } else {
+    digitalWrite(9, LOW);   
+  }
+
+  // DIVISIÓN 
+  if (EstadoB ==0) {
+    digitalWrite(8, HIGH);  
+  } else {
+    digitalWrite(8, LOW);   
+  }
+  if (EstadoA && EstadoB) {
+    digitalWrite(7, HIGH); 
+  } else {
+    digitalWrite(7, LOW);   
+  }
+}
